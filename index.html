@@ -1,36 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LMS - Login</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>LMS Platform - Learn Anywhere</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
 </head>
-<body>
-    <div class="auth-container">
-        <div class="auth-card">
-            <div class="auth-header">
-                <h1>Learning Management System</h1>
-                <p>Welcome back! Please login to continue</p>
-            </div>
-            <form id="loginForm" class="auth-form">
-                <div class="form-group">
-                    <label for="loginEmail">Email Address</label>
-                    <input type="email" id="loginEmail" required placeholder="Enter your email">
-                </div>
-                <div class="form-group">
-                    <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" required placeholder="Enter your password">
-                </div>
-                <button type="submit" class="btn btn-primary">Login</button>
-                <div class="auth-footer">
-                    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
-                </div>
-                <div id="loginError" class="error-message"></div>
-            </form>
-        </div>
-    </div>
-    <script src="auth.js"></script>
-</body>
-</html>
 
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-mortarboard-fill me-2"></i>Antigravity LMS
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center" id="navLinks">
+                    <!-- Dynamic Links -->
+                </ul>
+                <div class="d-flex ms-3" id="authButtons">
+                    <!-- Login/Signup or User Profile -->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Spacer for Fixed Nav -->
+    <div style="height: var(--header-height);"></div>
+
+    <!-- Main Content Container -->
+    <div id="mainContent">
+        <!-- Views will be injected here via JS -->
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="mb-0">&copy; 2026 Antigravity LMS. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Templates (Hidden) -->
+
+    <!-- Login View Template -->
+    <template id="loginViewTemplate">
+        <div class="container">
+            <div class="auth-container">
+                <h2 class="text-center mb-4">Welcome Back</h2>
+                <form id="loginForm">
+                    <div class="mb-3">
+                        <label class="form-label text-muted">Username</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-person"></i></span>
+                            <input type="text" class="form-control" name="username" placeholder="e.g. student1"
+                                required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                            <input type="password" class="form-control" name="password" placeholder="password123"
+                                required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">Login to Account</button>
+                    <div class="mt-4 text-center">
+                        <span class="text-muted">New here?</span> <a href="#" id="linkToSignup"
+                            class="fw-bold text-decoration-none">Create Account</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </template>
+
+    <!-- Signup View Template -->
+    <template id="signupViewTemplate">
+        <div class="container">
+            <div class="auth-container">
+                <h2 class="text-center mb-4">Join Us Today</h2>
+                <form id="signupForm">
+                    <div class="mb-3">
+                        <label class="form-label text-muted">Full Name</label>
+                        <input type="text" class="form-control" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-muted">Username</label>
+                        <input type="text" class="form-control" name="username" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Password</label>
+                        <input type="password" class="form-control" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">Sign Up Free</button>
+                    <div class="mt-4 text-center">
+                        <span class="text-muted">Already a member?</span> <a href="#" id="linkToLogin"
+                            class="fw-bold text-decoration-none">Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </template>
+
+    <!-- Dashboard View Template -->
+    <template id="dashboardViewTemplate">
+        <div class="container py-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2 class="section-title mb-0">My Learning Dashboard</h2>
+                    <p class="text-muted mt-2" id="welcomeMessage"></p>
+                </div>
+                <button class="btn btn-outline-primary" onclick="navigateTo('courses')">Browse More Courses</button>
+            </div>
+
+            <h4 class="mb-3 fw-bold text-secondary">My Enrollments</h4>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="myCoursesList">
+                <!-- Course Cards will load here -->
+            </div>
+
+            <div id="noEnrollmentsMsg" class="d-none text-center py-5">
+                <div class="mb-3"><i class="bi bi-journal-x text-muted display-4"></i></div>
+                <h5 class="text-muted">You haven't enrolled in any courses yet.</h5>
+                <button class="btn btn-primary mt-3" onclick="navigateTo('courses')">Explore Courses</button>
+            </div>
+        </div>
+    </template>
+
+    <!-- Course Catalog Template -->
+    <template id="catalogViewTemplate">
+        <!-- Hero Section -->
+        <div class="hero-section text-center">
+            <div class="container">
+                <h1 class="display-4 fw-bold mb-3">Expand Your Knowledge</h1>
+                <p class="lead mb-4">Master new skills with our expert-led courses.</p>
+                <div class="d-inline-flex bg-white rounded-pill p-1 ps-4 input-group" style="max-width: 500px;">
+                    <input type="text" class="form-control border-0 shadow-none" placeholder="Search for courses...">
+                    <button class="btn btn-primary rounded-pill px-4">Search</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container pb-5">
+            <h2 class="section-title">Featured Courses</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="allCoursesList">
+                <!-- Course Cards will load here -->
+            </div>
+        </div>
+    </template>
+
+    <!-- Course Detail/Player Template -->
+    <template id="courseDetailViewTemplate">
+        <div class="container py-5">
+            <button class="btn btn-link text-decoration-none mb-3 ps-0" id="backButton">
+                <i class="bi bi-arrow-left"></i> Back to Courses
+            </button>
+
+            <div class="row g-5">
+                <!-- Left Column: Video & Info -->
+                <div class="col-lg-8">
+                    <div id="videoSection" class="video-container mb-4 d-none">
+                        <video controls id="courseVideo">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="alert alert-success mt-3 d-flex align-items-center">
+                            <i class="bi bi-check-circle-fill me-2 fs-5"></i>
+                            <div><strong>Enrolled!</strong> You have full access to this course.</div>
+                        </div>
+                    </div>
+
+                    <div class="course-detail-header">
+                        <h1 class="fw-bold mb-3" id="detailTitle"></h1>
+                        <div class="d-flex align-items-center mb-4 text-muted">
+                            <div class="me-4"><i class="bi bi-person-video3 me-2"></i><span
+                                    id="detailInstructor"></span></div>
+                            <div class="me-4"><i class="bi bi-clock me-2"></i><span id="detailDuration"></span></div>
+                            <div><i class="bi bi-bar-chart me-2"></i><span id="detailLevel"></span></div>
+                        </div>
+                        <p class="text-secondary lead" id="detailDesc"></p>
+                    </div>
+
+                    <div class="mb-5">
+                        <h3 class="fw-bold mb-3">Course Curriculum</h3>
+                        <ul class="list-group lesson-list" id="lessonList">
+                            <!-- Lessons populated via JS -->
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right Column: Sidebar -->
+                <div class="col-lg-4">
+                    <div class="card border-0 shadow-sm sticky-top" style="top: 100px; z-index: 1;">
+                        <img src="" class="card-img-top" id="detailThumbnail" alt="Course Thumbnail">
+                        <div class="card-body p-4">
+                            <div id="enrollSection">
+                                <h3 class="fw-bold mb-3">Free</h3>
+                                <button class="btn btn-success btn-lg w-100 shadow-sm mb-3" id="enrollBtn">Enroll
+                                    Now</button>
+                                <p class="text-muted small text-center mb-0"><i class="bi bi-shield-check"></i> 30-Day
+                                    Money-Back Guarantee</p>
+                            </div>
+                            <div id="enrolledBadge" class="d-none">
+                                <button class="btn btn-secondary w-100 disabled">Already Enrolled</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Profile View Template -->
+    <template id="profileViewTemplate">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="profile-card">
+                        <div class="profile-header"></div>
+                        <div class="profile-body">
+                            <img src="" class="profile-avatar mb-3" id="profileImage">
+                            <h2 class="fw-bold mb-1" id="profileName"></h2>
+                            <p class="text-muted mb-4" id="profileUsername">@student</p>
+                            <p id="profileBio" class="text-secondary mb-4">No bio available.</p>
+
+                            <hr>
+
+                            <div class="d-flex justify-content-around text-start mt-4">
+                                <div>
+                                    <h5 class="fw-bold mb-0" id="profileCourseCount">0</h5>
+                                    <small class="text-muted">Courses</small>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold mb-0">Active</h5>
+                                    <small class="text-muted">Status</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Project Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

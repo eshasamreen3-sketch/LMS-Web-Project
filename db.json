@@ -1,0 +1,108 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "username": "student1",
+            "password": "password123",
+            "name": "Ayesha Samreen",
+            "type": "student",
+            "bio": "Passionate learner exploring web technologies.",
+            "profileImage": "https://ui-avatars.com/api/?name=John+Doe&background=0D8ABC&color=fff",
+            "enrolledCourses": []
+        },
+        {
+            "id": 2,
+            "username": "admin",
+            "password": "adminpassword",
+            "name": "Admin User",
+            "type": "admin",
+            "bio": "System Administrator",
+            "profileImage": "https://ui-avatars.com/api/?name=Admin+User&background=333&color=fff",
+            "enrolledCourses": []
+        }
+    ],
+    "courses": [
+        {
+            "id": 1,
+            "title": "Complete JavaScript Bootcamp",
+            "description": "Master JavaScript from scratch. Learn DOM manipulation, Async JS, and more.",
+            "instructor": "Jonas Schmedtmann",
+            "duration": "60 hours",
+            "level": "Beginner to Pro",
+            "thumbnail": "https://placehold.co/600x400/f0db4f/323330?text=JS+Mastery",
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4",
+            "lessons": [
+                "Introduction to JavaScript",
+                "Variables and Data Types",
+                "DOM Manipulation",
+                "Asynchronous JavaScript",
+                "Modern ES6+ Features"
+            ]
+        },
+        {
+            "id": 2,
+            "title": "React JS - The Practical Guide",
+            "description": "Build real-world applications with React, Redux, and React Router.",
+            "instructor": "Maximilian Schwarzmüller",
+            "duration": "40 hours",
+            "level": "Intermediate",
+            "thumbnail": "https://placehold.co/600x400/61dafb/20232a?text=React+Pro",
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4",
+            "lessons": [
+                "React Basics & Components",
+                "State & Props",
+                "React Hooks",
+                "Routing with React Router",
+                "State Management with Redux"
+            ]
+        },
+        {
+            "id": 3,
+            "title": "Python for Data Science & ML",
+            "description": "Learn how to use NumPy, Pandas, Seaborn , Matplotlib , Plotly , Scikit-Learn et al.",
+            "instructor": "Jose Portilla",
+            "duration": "25 hours",
+            "level": "All Levels",
+            "thumbnail": "https://placehold.co/600x400/4B8BBE/white?text=Python+Data",
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4",
+            "lessons": [
+                "Python Crash Course",
+                "NumPy for Arrays",
+                "Pandas for Data Analysis",
+                "Matplotlib for Visualization",
+                "Machine Learning Concepts"
+            ]
+        },
+        {
+            "id": 4,
+            "title": "Web Design for Beginners",
+            "description": "Learn HTML5, CSS3, and Responsive Design to build beautiful websites.",
+            "instructor": "Brad Traversy",
+            "duration": "12 hours",
+            "level": "Beginner",
+            "thumbnail": "https://placehold.co/600x400/e34c26/white?text=Web+Design",
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4",
+            "lessons": [
+                "HTML5 Semantic Structure",
+                "CSS3 Styling & Box Model",
+                "Flexbox & Grid Layouts",
+                "Responsive Media Queries",
+                "Project: Landing Page"
+            ]
+        }
+    ],
+    "enrollments": [
+        {
+            "userId": 1,
+            "courseId": 2,
+            "date": "2026-01-21T16:17:00.417Z",
+            "id": 1
+        },
+        {
+            "userId": 1,
+            "courseId": 4,
+            "date": "2026-01-21T16:19:15.067Z",
+            "id": 2
+        }
+    ]
+}
